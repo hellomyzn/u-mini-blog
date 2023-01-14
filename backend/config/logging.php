@@ -53,7 +53,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single', 'slack'],
+            'channels' => ['daily', 'slack'],
             'ignore_exceptions' => false,
         ],
 
@@ -117,6 +117,16 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Custom Log
+    |--------------------------------------------------------------------------
+    */
+
+    'sql' => [
+        'enable' => env('LOG_SQL_ENABLE', false),
     ],
 
 ];

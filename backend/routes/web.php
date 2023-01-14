@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,3 +29,18 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Models\User;
+
+Route::get('/', function () {
+    
+    $user = User::factory()->create();
+    $user->name = 'change name';
+    $user->save();
+    $user->delete();
+
+    $user = User::factory()->create();
+    User::find($user->id);
+
+    return view('welcome');
+});
