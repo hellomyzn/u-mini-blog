@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
 
-use App\Models\Blog;
 use App\Repositories\Interfaces\BlogRepositoryInterface;
 
 
@@ -25,7 +24,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        $blog = $this->blogRepo->getAll();
-        return view('index');
+        $blogs = $this->blogRepo->getAll();
+        return view('blogs.index', compact('blogs'));
     }
 }

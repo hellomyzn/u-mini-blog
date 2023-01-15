@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::prefix('blog')
     ->name('blog.')
+    ->middleware(['auth'])
     ->controller(BlogController::class)
     ->group(function() {
         Route::get('', 'index')->name('index');
