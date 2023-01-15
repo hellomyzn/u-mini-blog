@@ -38,7 +38,9 @@ class BlogMysqlRepository implements BlogRepositoryInterface
     {
         try {
             return DB::transaction(function () {
-                return $this->model->get();
+                return $this->model
+                    ->with('user')
+                    ->get();
             });
         } catch(Exception $e) {
             Log::error(__METHOD__.'@'.$e->getLine().': '.$e->getMessage());

@@ -3,7 +3,10 @@
 
     <ul>
         @foreach ($blogs as $item)
-            <li class="m-5"> {{ $item->title }} </li>
+            <li class="m-5"> 
+                {{ $item->title }} 
+                {{ $item->user->name }}
+            </li>
         @endforeach
     </ul>
 </x-app-layout>
