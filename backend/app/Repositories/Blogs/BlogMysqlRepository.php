@@ -32,7 +32,7 @@ class BlogMysqlRepository implements BlogRepositoryInterface
     /**
      * getAll
      *
-     * @return Collection
+     * @return Collection or array
      */
     public function getAll(): Collection | array
     {
@@ -41,6 +41,32 @@ class BlogMysqlRepository implements BlogRepositoryInterface
                 return $this->model
                     ->with('user')
                     ->withCount('comments')
+                    ->latest()
+                    ->get();
+            });
+        } catch(Exception $e) {
+            Log::error(__METHOD__.'@'.$e->getLine().': '.$e->getMessage());
+
+            return [
+                'msg' => $e->getMessage(),
+                'err' => false,
+            ];
+        }
+    }
+
+    /**
+     * getOnlyPublic
+     *
+     * @return Collection or array
+     */
+    public function getOnlyPublic(): Collection | array
+    {
+        try {
+            return DB::transaction(function () {
+                return $this->model
+                    ->with('user')
+                    ->withCount('comments')
+                    ->OnlyPublic()
                     ->latest()
                     ->get();
             });

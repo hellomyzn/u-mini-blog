@@ -13,6 +13,11 @@ class Blog extends Model
 {
     use HasFactory;
 
+    const IS_PUBLIC = [
+        'private' => 0,
+        'public' => 1,
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class)->withDefault([
@@ -23,5 +28,11 @@ class Blog extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    public function scopeOnlyPublic($query)
+    {
+        
+        return $query->where('is_public', Blog::IS_PUBLIC['public']);
     }
 }
