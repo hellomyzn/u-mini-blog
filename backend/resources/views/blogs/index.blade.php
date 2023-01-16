@@ -2,10 +2,10 @@
     <h1>Blogs</h1>
 
     <ul>
-        @foreach ($blogs as $item)
+        @foreach ($blogs as $blog)
             <li class="m-5"> 
-                {{ $item->title }} 
-                {{ $item->user->name }}
+                {{ $blog['title'] }} 
+                {{ $blog['user_name'] }}
             </li>
         @endforeach
     </ul>

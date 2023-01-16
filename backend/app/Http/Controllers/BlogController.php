@@ -4,27 +4,27 @@ namespace App\Http\Controllers;
 
 // use Illuminate\Http\Request;
 
-use App\Repositories\Interfaces\BlogRepositoryInterface;
+use App\Services\BlogService;
 
 
 class BlogController extends Controller
 {
     /**
-     * blogRepo
+     * blogService
      *
      * @var [type]
      */
-    protected $blogRepo;
+    protected $blogService;
 
-    public function __construct(BlogRepositoryInterface $blogRepository)
+    public function __construct(BlogService $blogService)
     {
-        $this->blogRepo = $blogRepository;
+        $this->blogService = $blogService;
     }
 
 
     public function index()
     {
-        $blogs = $this->blogRepo->getAll();
+        $blogs = $this->blogService->getAllWithUser();
         return view('blogs.index', compact('blogs'));
     }
 }
