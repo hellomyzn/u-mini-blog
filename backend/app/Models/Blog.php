@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Models\User;
+use App\Models\Comment;
+
+
 class Blog extends Model
 {
     use HasFactory;
@@ -15,5 +18,10 @@ class Blog extends Model
         return $this->belongsTo(User::class)->withDefault([
             'name' => 'No User'
         ]);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

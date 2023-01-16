@@ -40,6 +40,8 @@ class BlogMysqlRepository implements BlogRepositoryInterface
             return DB::transaction(function () {
                 return $this->model
                     ->with('user')
+                    ->withCount('comments')
+                    ->latest()
                     ->get();
             });
         } catch(Exception $e) {

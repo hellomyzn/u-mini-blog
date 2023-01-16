@@ -45,12 +45,16 @@ class BlogService
         $blogs = $this->blogRepo->getAll();
 
         $blogsWithUser = $blogs->map(function ($blog, $key){
-            
+            $created_at = $blog->created_at->format('Y年m月d日');
+            $updated_at = $blog->updated_at->format('Y年m月d日');
+
             $data = [
                 'title' => $blog->title,
                 'body' => $blog->body,
-                'created_at' => $blog->created_at,
+                'created_at' => $created_at,
+                'updated_at' => $updated_at == $created_at ? null : "(" . $updated_at . " 更新)",
                 'user_name' => is_null($blog->user) ? 'No User' : $blog->user->name,
+                'comments_count' => $blog->comments_count,
             ];
             return $data;
         });
