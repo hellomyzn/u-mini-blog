@@ -18,11 +18,15 @@ class BlogFactory extends Factory
      */
     public function definition()
     {
+        $created_at = $this->faker->dateTimeBetween('-10days', '-1days');
+        $updated_at = $this->faker->dateTimeBetween($created_at, '0days');
         return [
             'user_id' => User::factory(),
+            'is_public' => $this->faker->randomElement([1,1,1,1,0]),
             'title' => $this->faker->realText(20),
             'body' => $this->faker->realText(100),
-            'updated_at' => $this->faker->dateTimeBetween('-10days', '0days'),
+            'created_at' => $created_at,
+            'updated_at' => $updated_at
         ];
     }
 }

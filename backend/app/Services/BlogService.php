@@ -42,7 +42,7 @@ class BlogService
      */
     public function getAllWithUser(): Collection | array
     {
-        $blogs = $this->blogRepo->getAll();
+        $blogs = $this->blogRepo->getOnlyPublic();
 
         $blogsWithUser = $blogs->map(function ($blog, $key){
             $created_at = $blog->created_at->format('Y年m月d日');

@@ -19,6 +19,7 @@ return new class extends Migration
                 ->constrained()
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
+            $table->boolean('is_public');
             $table->string('title');
             $table->text('body');
             $table->timestamps();
