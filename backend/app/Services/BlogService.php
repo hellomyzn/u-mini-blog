@@ -46,13 +46,13 @@ class BlogService
 
         $blogsWithUser = $blogs->map(function ($blog, $key){
             
-            $blog = [
+            $data = [
                 'title' => $blog->title,
                 'body' => $blog->body,
                 'created_at' => $blog->created_at,
                 'user_name' => is_null($blog->user) ? 'No User' : $blog->user->name,
             ];
-            return $blog;
+            return $data;
         });
 
         return $blogsWithUser;
