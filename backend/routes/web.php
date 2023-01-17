@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('blogs')
+    ->name('blogs.')
+    ->middleware(['auth'])
+    ->controller(BlogController::class)
+    ->group(function() {
+        Route::get('', 'index')->name('index');
+        // Route::pattern('', '[0-9]+');
+        Route::get('{blog}', 'show')->name('show');
+    });
 
 Route::get('/dashboard', function () {
     return view('dashboard');

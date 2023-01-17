@@ -198,6 +198,11 @@ return [
         // Logs
         App\Providers\DatabaseQueryServiceProvider::class,
 
+        /*
+         * Repository Service
+         */
+        App\Providers\RepositoryServiceProvider::class,
+
     ],
 
     /*
