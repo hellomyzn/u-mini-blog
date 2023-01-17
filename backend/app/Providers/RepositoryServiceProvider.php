@@ -4,9 +4,15 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+# interface
 use App\Repositories\Interfaces\BlogRepositoryInterface;
+use App\Repositories\Interfaces\UserRepositoryInterface;
+use App\Repositories\Interfaces\CommentRepositoryInterface;
 
-use App\Repositories\Blogs\BlogMysqlRepository;
+# repository
+use App\Repositories\Blogs\BlogModelRepository;
+use App\Repositories\Users\UserModelRepository;
+use App\Repositories\Comments\CommentModelRepository;
 
 
 
@@ -19,7 +25,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(BlogRepositoryInterface::class, BlogMysqlRepository::class);        
+        $this->app->bind(BlogRepositoryInterface::class, BlogModelRepository::class);        
+        $this->app->bind(UserRepositoryInterface::class, UserModelRepository::class);        
+        $this->app->bind(CommentRepositoryInterface::class, CommentModelRepository::class);        
     }
 
     /**

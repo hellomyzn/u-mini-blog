@@ -13,6 +13,10 @@ class Blog extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'is_public' => 'boolean',
+    ];
+
     const IS_PUBLIC = [
         'private' => 0,
         'public' => 1,
@@ -31,8 +35,7 @@ class Blog extends Model
     }
 
     public function scopeOnlyPublic($query)
-    {
-        
+    {   
         return $query->where('is_public', Blog::IS_PUBLIC['public']);
     }
 }
